@@ -12,7 +12,7 @@ model = pickle.load(open("flight_rf.pkl", "rb"))
 @app.route("/")
 @cross_origin()
 def home():
-    return render_template("home.html")
+    return render_template("index.html")
 
 
 
@@ -296,10 +296,10 @@ def predict():
             D_Banglore = 1
 
         if Source == Destination:
-            return render_template("home.html",prediction_text="You shouldn't select same location for destination.")
+            return render_template("index.html",prediction_text="You shouldn't select same location for destination.")
         
         if date_arr < date_dep:
-            return render_template("home.html",prediction_text="You should select arrival date and time properly.")
+            return render_template("index.html",prediction_text="You should select arrival date and time properly.")
 
         ['Total_Stops', 'Journey_day', 'Journey_month', 'dep_time_hour',
        'arr_time_hour', 'Duration_hour', 'S_Banglore', 'S_Chennai', 'S_Delhi',
@@ -339,10 +339,10 @@ def predict():
 
         output=round(prediction[0],2)
 
-        return render_template('home.html',prediction_text="Your Flight price is Rs. {}".format(output))
+        return render_template('index.html',prediction_text="Your Flight price is Rs. {}".format(output))
 
 
-    return render_template("home.html")
+    return render_template("index.html")
 
 
 
